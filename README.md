@@ -1,13 +1,24 @@
-# HideMyTourist
+# README
 
-HideMyTourist is a webapp that allows someone, that has an account, create a personal 
-list of places of his preference for a specific city, and share with their friends.
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-The concept is applied for those who like to go to a city and not follows the traditional 
-touristic guides that we see in the internet but, visit places of his friends' preferences.
+Things you may want to cover:
 
->>> Ruby on Rails!! 
+* Ruby version
 
-Feedback is always welcome!
+* System dependencies
 
-:) 
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
