@@ -2,7 +2,7 @@
 
   <!-- Logo -->
   <%= link_to root_path do %>
-  <%= image_tag "http://res.cloudinary.com/dc2fg86gy/image/upload/tables_h0g24v", class: "navbar-wagon-brand", style: "width:100px" %>
+ <!-- <%= cl_image_tag "logo_dummy_rmfmcs", class: "navbar-wagon-brand", style: "width:60px" %>-->
   <% end %>
 
   <!-- Different navigation if login or not -->
@@ -14,7 +14,7 @@
       <%  if !current_user.facebook_picture_url.nil? %>
         <%= image_tag current_user.facebook_picture_url, class: "avatar"%>
       <% end %>
-      <%= link_to "Help", root_path, class: "navbar-wagon-item navbar-wagon-link"  %>
+     <!-- <%= link_to "Help", root_path, class: "navbar-wagon-item navbar-wagon-link"  %>-->
       <%= link_to "Logout", root_path, class: "navbar-wagon-item navbar-wagon-link"  %>
       <%= link_to "Profile", root_path, class: "navbar-wagon-item navbar-wagon-link"  %>
 
@@ -30,7 +30,7 @@
     <div class="navbar-wagon-right hidden-xs hidden-sm">
 
   <!-- Text link -->
-      <%= link_to "Help", root_path, class: "navbar-wagon-item navbar-wagon-link"  %>
+   <!--   <%= link_to "Help", root_path, class: "navbar-wagon-item navbar-wagon-link"  %> -->
       <%= link_to "Login", root_path, class: "navbar-wagon-item navbar-wagon-link"  %>
       <%= link_to "Sign up", root_path, class: "navbar-wagon-item navbar-wagon-link"  %>
       <!--<%= link_to "List your table", root_path, class: "navbar-wagon-item navbar-wagon-button btn"  %> -->
