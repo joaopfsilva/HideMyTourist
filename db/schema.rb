@@ -10,10 +10,72 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401164411) do
+ActiveRecord::Schema.define(version: 20170401214817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorite_lists", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_favorite_lists_on_list_id", using: :btree
+    t.index ["profile_id"], name: "index_favorite_lists_on_profile_id", using: :btree
+  end
+
+  create_table "favorite_places", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_favorite_places_on_place_id", using: :btree
+    t.index ["profile_id"], name: "index_favorite_places_on_profile_id", using: :btree
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_lists_on_place_id", using: :btree
+    t.index ["profile_id"], name: "index_lists_on_profile_id", using: :btree
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string   "name"
+    t.float    "price"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "city_id"
+    t.index ["category_id"], name: "index_places_on_category_id", using: :btree
+    t.index ["city_id"], name: "index_places_on_city_id", using: :btree
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.date     "birth_date"
+    t.string   "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,4 +94,6 @@ ActiveRecord::Schema.define(version: 20170401164411) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "places", "cities"
+  add_foreign_key "profiles", "users"
 end
