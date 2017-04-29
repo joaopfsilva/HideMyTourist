@@ -1,7 +1,8 @@
 class Place < ApplicationRecord
-  belongs_to :city
-  belongs_to :category
 
+  belongs_to :category
   has_many :favorite_place
+
+  has_many :place_lists
 
 end

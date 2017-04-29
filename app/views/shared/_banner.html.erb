@@ -1,9 +1,29 @@
 <div class="banner" style="background: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(60,60,80,0.6) 20%), url('<%= cl_image_path "travel_2_jfjeqd" %>')">
 
-    <div class="banner-content">
+<!--    <div class="banner-content">
+   <div class="text-center">
+    <h1>Where's your next stop?</h1>
+    <br>
 
-      <h1>Where's your next stop?</h1>
-      <br>
+    <form action="/cities" class="navbar-wagon-search center-form" id="searchPlace">
+      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
+      <button type="submit" class="navbar-wagon-search-btn">
+        <i class="fa fa-search"></i>
+      </button>
+    </form>
 
+  </div> -->
+  <div class="text-center">
+    <h1>Where's your next stop?</h1>
+    <br>
+    <div class="container text-center">
+      <div id="searchPlace", class="col-sm-12 col-md-12", style="width: 100%; margin: 0 auto">
+        <% @cities.each do |city| %>
+          <%= link_to city.name, city_lists_path(city), class: "btn btn-primary", style: "margin:5px" %>
+        <% end %>
+      </div>
     </div>
   </div>
+
+</div>
+</div>

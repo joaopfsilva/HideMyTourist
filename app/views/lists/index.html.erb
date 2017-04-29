@@ -1,0 +1,33 @@
+<div class="container">
+
+    <div class="col-xs-12 col-sm-6 col-md-12">
+      <h2 class="text-center"><%= @city.name %></h2>
+        <% if !@list_city %>
+          <h2>No Lists have been created!</h2>
+        <% else %>
+            <div class="row">
+              <% @list_city.each do |list| %>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                  <%= link_to lists_path do %>
+                    <div class="card" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= 'https://static.pexels.com/photos/298018/pexels-photo-298018.jpeg' %>')">
+
+                      <div class="card-description">
+                        <p>
+                          <strong><%= list.city.name %></strong>
+                        </p>
+                      </div>
+
+                      <div class="card-user">
+                        <%= list.profile.first_name %> <%= list.profile.last_name %>
+                      </div>
+
+                    </div>
+                    <br>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401214817) do
+ActiveRecord::Schema.define(version: 20170426195623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,22 +47,38 @@ ActiveRecord::Schema.define(version: 20170401214817) do
 
   create_table "lists", force: :cascade do |t|
     t.integer  "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "city_id"
+    t.index ["city_id"], name: "index_lists_on_city_id", using: :btree
+    t.index ["profile_id"], name: "index_lists_on_profile_id", using: :btree
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "url"
+    t.string   "alias"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "place_lists", force: :cascade do |t|
+    t.integer  "list_id"
     t.integer  "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["place_id"], name: "index_lists_on_place_id", using: :btree
-    t.index ["profile_id"], name: "index_lists_on_profile_id", using: :btree
+    t.integer  "photo_id"
+    t.index ["list_id"], name: "index_place_lists_on_list_id", using: :btree
+    t.index ["photo_id"], name: "index_place_lists_on_photo_id", using: :btree
+    t.index ["place_id"], name: "index_place_lists_on_place_id", using: :btree
   end
 
   create_table "places", force: :cascade do |t|
     t.string   "name"
     t.float    "price"
-    t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "city_id"
+    t.integer  "category_id"
     t.index ["category_id"], name: "index_places_on_category_id", using: :btree
-    t.index ["city_id"], name: "index_places_on_city_id", using: :btree
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -94,6 +110,8 @@ ActiveRecord::Schema.define(version: 20170401214817) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "places", "cities"
+  add_foreign_key "lists", "cities"
+  add_foreign_key "place_lists", "photos"
+  add_foreign_key "places", "categories"
   add_foreign_key "profiles", "users"
 end

@@ -1,5 +1,6 @@
 class Profile < ApplicationRecord
   has_many :favorite_place
+  has_many :lists
   belongs_to :user
   # validates :first_name, presence:true
   # validates :last_name, presence:true
@@ -8,5 +9,5 @@ class Profile < ApplicationRecord
   # validates :is_host, presence:true
   # validates :gender, presence:true
 
-    mount_uploader :photo, PhotoUploader
+  mount_uploader :photo, PhotoUploader
 end
